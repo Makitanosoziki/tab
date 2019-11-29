@@ -5,10 +5,29 @@ function tab(options) {
     // コンテンツの箱の配列を作る
     const contentSectionAry = [].slice.call(options.section.querySelectorAll('section'));
 
+
+    move(options.defaultNum);
+
+    const prevElement = options.tabControle.querySelector('.prev');
+    const nextElement = options.tabControle.querySelector('.next');
+
     // menuをクリックしたら
     menuAry.forEach(function (tabMenuItemElement) {
         tabMenuItemElement.addEventListener('click', onClickMenu);
     })
+
+    prevElement.addEventListener('click', onClickPrev);
+
+    function onClickPrev() {
+        move(currentNum - 1);
+    }
+
+
+    nextElement.addEventListener('click', onClickNext);
+
+    function onClickNext() {
+        move(currentNum + 1);
+    }
 
     // クリックしたところが何番目か返して
     function onClickMenu() {
@@ -42,24 +61,6 @@ function tab(options) {
         // 同じ番号のcontentなどにclassをつける
         menuAry[currentNum].classList.add("on");
         contentSectionAry[currentNum].classList.add("on");
-    }
-
-    move(options.defaultNum);
-
-    const prevElement = options.tabControle.querySelector('.prev');
-
-    prevElement.addEventListener('click', onClickPrev);
-
-    function onClickPrev() {
-        move(currentNum - 1);
-    }
-
-    const nextElement = options.tabControle.querySelector('.next');
-
-    nextElement.addEventListener('click', onClickNext);
-
-    function onClickNext() {
-        move(currentNum + 1);
     }
 }
 
