@@ -1,63 +1,70 @@
-function tab(options) {
-    // メニューの配列を作る
-    const menuAry = $(options.menu).find('li');
+;
 
-    // コンテンツの箱の配列を作る
-    const contentSectionAry = $(options.section).find('section');
+(function ($) {
+    $.fn.tab = function () {
 
-    //次へ、戻るを変数に入れる
-    const prevElement = $(options.tabControle).find('.prev');
+        function tab(options) {
+            // メニューの配列を作る
+            const menuAry = $(options.menu).find('li');
 
-    const nextElement = $(options.tabControle).find('.next');
+            // コンテンツの箱の配列を作る
+            const contentSectionAry = $(options.section).find('section');
 
-    menuAry.on('click', onClickMenu)
+            //次へ、戻るを変数に入れる
+            const prevElement = $(options.tabControle).find('.prev');
 
-    // クリックしたところが何番目か返して
-    function onClickMenu() {
-        const index = menuAry.index(this);
-        move(index);
-    }
+            const nextElement = $(options.tabControle).find('.next');
 
-    let currentNum = 0;
+            menuAry.on('click', onClickMenu)
 
-    move(options.defaultNum);
-
-    prevElement.on('click', onClickPrev);
-
-    function onClickPrev() {
-        move(currentNum - 1);
-    }
-
-    nextElement.on('click', onClickNext);
-
-    function onClickNext() {
-        move(currentNum + 1);
-    }
-
-    function move(num) {
-
-        if (options.isLoop) {
-            if (num >= menuAry.length) {
-                currentNum = 0;
-            } else if (num < 0) {
-                currentNum = menuAry.length - 1;
-            } else {
-                currentNum = num;
+            // クリックしたところが何番目か返して
+            function onClickMenu() {
+                const index = menuAry.index(this);
+                move(index);
             }
-        } else {
-            currentNum = Math.min((menuAry.length - 1), num);
-            currentNum = Math.max(0, currentNum);
+
+            let currentNum = 0;
+
+            move(options.defaultNum);
+
+            prevElement.on('click', onClickPrev);
+
+            function onClickPrev() {
+                move(currentNum - 1);
+            }
+
+            nextElement.on('click', onClickNext);
+
+            function onClickNext() {
+                move(currentNum + 1);
+            }
+
+            function move(num) {
+
+                if (options.isLoop) {
+                    if (num >= menuAry.length) {
+                        currentNum = 0;
+                    } else if (num < 0) {
+                        currentNum = menuAry.length - 1;
+                    } else {
+                        currentNum = num;
+                    }
+                } else {
+                    currentNum = Math.min((menuAry.length - 1), num);
+                    currentNum = Math.max(0, currentNum);
+                }
+
+                // 全部のclassを外す
+                menuAry.removeClass('on');
+                contentSectionAry.removeClass('on');
+
+                // 同じ番号のcontentなどにclassをつける
+                menuAry.eq(currentNum).addClass('on');
+                contentSectionAry.eq(currentNum).addClass('on');
+            }
         }
-
-        // 全部のclassを外す
-        menuAry.removeClass('on');
-        contentSectionAry.removeClass('on');
-
-        // 同じ番号のcontentなどにclassをつける
-        menuAry.eq(currentNum).addClass('on');
-        contentSectionAry.eq(currentNum).addClass('on');
     }
-}
+})(jQuery);
 
 tab({
     defaultNum: 0,
