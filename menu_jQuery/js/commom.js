@@ -16,6 +16,7 @@ function tab(options) {
     function onClickMenu() {
         const index = menuAry.index(this);
         move(index);
+        6
     }
 
     let currentNum = 0;
@@ -36,6 +37,8 @@ function tab(options) {
 
     function move(num) {
 
+        console.log(">>>" + num);
+
         if (options.isLoop) {
             if (num >= menuAry.length) {
                 currentNum = 0;
@@ -48,6 +51,8 @@ function tab(options) {
             currentNum = Math.min((menuAry.length - 1), num);
             currentNum = Math.max(0, currentNum);
         }
+        //
+        //                console.log();
 
         // 全部のclassを外す
         menuAry.removeClass('on');
