@@ -47,7 +47,46 @@
             <p class='tabItem-content'>コンテンツ5</p>
         </section>
     </div>
+
+    <ul class="tabControle">
+        <li class="prev">prev</li>
+        <li class="next">next</li>
+    </ul>
+    <ul class="tabMenu">
+        <li class="tabMenuItem">menu1</li>
+        <li class="tabMenuItem">menu2</li>
+        <li class="tabMenuItem">menu3</li>
+        <li class="tabMenuItem">menu4</li>
+        <li class="tabMenuItem">menu5</li>
+    </ul>
+    <div class="tabContents">
+        <section class="tabItem">
+            <h2 class='tabItem-title'>タイトル1</h2>
+            <p class='tabItem-content'>コンテンツ1</p>
+        </section>
+        <section class="tabItem">
+            <h2 class='tabItem-title'>タイトル2</h2>
+            <p class='tabItem-content'>コンテンツ2</p>
+        </section>
+        <section class="tabItem">
+            <h2 class='tabItem-title'>タイトル3</h2>
+            <p class='tabItem-content'>コンテンツ3</p>
+        </section>
+        <section class="tabItem">
+            <h2 class='tabItem-title'>タイトル4</h2>
+            <p class='tabItem-content'>コンテンツ4</p>
+        </section>
+        <section class="tabItem">
+            <h2 class='tabItem-title'>タイトル5</h2>
+            <p class='tabItem-content'>コンテンツ5</p>
+        </section>
+    </div>
 </div>
+
+
+
+
+
 
 <div class="tab">
     <ul class="tabControle2">
@@ -87,6 +126,25 @@
 
 
 <script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/commom.js"></script>
+<script src="js/jquery.tab.js"></script>
+<script>
+    $('.tabMenu').tab({
+        defaultNum: 0,
+        menu: '.tabMenu',
+        section: '.tabContents',
+        isLoop: true,
+        tabControle: '.tabControle'
+    });
+
+
+    $('.tabMenu2').tab({
+        defaultNum: 0,
+        menu: '.tabMenu2',
+        section: '.tabContents2',
+        isLoop: false,
+        tabControle: '.tabControle2'
+    });
+
+</script>
 
 </html>
