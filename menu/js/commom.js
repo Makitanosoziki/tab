@@ -5,11 +5,14 @@ function tab(options) {
     // コンテンツの箱の配列を作る
     const contentSectionAry = [].slice.call(options.section.querySelectorAll('section'));
 
+    let currentNum = 0;
 
     move(options.defaultNum);
 
     const prevElement = options.tabControle.querySelector('.prev');
     const nextElement = options.tabControle.querySelector('.next');
+
+    setInterval (onClickNext,3000);
 
     // menuをクリックしたら
     menuAry.forEach(function (tabMenuItemElement) {
@@ -34,8 +37,6 @@ function tab(options) {
         const index = menuAry.indexOf(this);
         move(index);
     }
-
-    let currentNum = 0;
 
     function move(num) {
 
@@ -69,7 +70,8 @@ tab({
     menu: document.querySelector('.tabMenu'),
     section: document.querySelector('.tabContents'),
     isLoop: true,
-    tabControle: document.querySelector('.tabControle')
+    tabControle: document.querySelector('.tabControle'),
+    time: 3000
 })
 
 tab({
@@ -77,5 +79,6 @@ tab({
     menu: document.querySelector('.tabMenu2'),
     section: document.querySelector('.tabContents2'),
     isLoop: false,
-    tabControle: document.querySelector('.tabControle2')
+    tabControle: document.querySelector('.tabControle2'),
+    time: 3000
 })
